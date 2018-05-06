@@ -1,5 +1,3 @@
-def workspace_179_12 = null
-
 pipeline {
   agent any
   triggers {
@@ -15,10 +13,6 @@ pipeline {
               timeout(time: 180, unit: 'MINUTES')
             }
             steps {
-              script {
-                workspace_179_12 = "${env.LOCAL_BUILD_PATH}"
-              }
-              echo $workspace_179_12
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
           }
@@ -27,7 +21,7 @@ pipeline {
 
     stage('copy xmls') {
       steps {
-        sh '''cp -p ${workspace_179_12}/*.xml .'''
+        sh '''cp -p ${env.LOCAL_BUILD_PATH}/*.xml .'''
       }
     }
 
