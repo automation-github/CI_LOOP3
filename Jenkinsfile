@@ -10,7 +10,9 @@ pipeline {
        
           stage('CI_LOOP3_5.1_SOLID_179.12') {
             agent any
-            def workspace = pwd()
+            script {
+              def workspace = pwd()
+            }
             options {
               timeout(time: 180, unit: 'MINUTES')
             }
