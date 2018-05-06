@@ -17,24 +17,13 @@ pipeline {
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
           }
-
-          stage('CI_LOOP3_5.1_Solid_182.143') {
-            agent any
-            options {
-              timeout(time: 180, unit: 'MINUTES')
-            }
-            steps {
-              build (job: 'CI_LOOP3_5.1_Solid_182.143/master', propagate: false)
-            }
-          }
-
         }
       }
 
     stage('copy xmls') {
       steps {
-        sh '''cp -p ../CI_LOOP3_5.1_SOLID_182.143/branches/master/*.xml .
-cp -p ../CI_LOOP3_5.1_SOLID_179.12/branches/master/*.xml .'''
+        sh '''cp -p ../jobs/CI_LOOP3_5.1_SOLID_182.143/branches/master/*.xml .
+cp -p ../jobs/CI_LOOP3_5.1_SOLID_179.12/branches/master/*.xml .'''
       }
     }
 
