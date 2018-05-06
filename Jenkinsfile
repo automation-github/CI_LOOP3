@@ -1,4 +1,4 @@
-def workspace_179_12 = null
+def workspace_179_12 = ""
 
 pipeline {
   agent any
