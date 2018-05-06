@@ -18,6 +18,7 @@ pipeline {
               script {
                 workspace_179_12 = "${env.LOCAL_BUILD_PATH}"
               }
+              echo $workspace_179_12
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
           }
