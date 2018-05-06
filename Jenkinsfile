@@ -1,4 +1,4 @@
-def workspace_179_12 = ""
+def workspace_179_12 = null
 
 pipeline {
   agent any
@@ -17,7 +17,7 @@ pipeline {
             steps {
               script {
                 workspace_179_12 = "$env.WORKSPACE/build"
-                echo $workspace_179_12
+                echo workspace_179_12
               }
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
@@ -27,7 +27,7 @@ pipeline {
 
     stage('copy xmls') {
       steps {
-        sh '''cp -p ${workspace_179_12}/*.xml .'''
+        sh "cp -p $workspace_179_12/*.xml ."
       }
     }
 
