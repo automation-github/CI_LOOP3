@@ -4,9 +4,9 @@ pipeline {
     target_cluster = '10.65.182.11'
   }
 
-  triggers {
-    cron('H */4 * * 1-5')
-  }
+  triggers {
+    cron('H */4 * * 1-5')
+  }
 
   stages {
     stage('CI_LOOP3_MASTER') {
