@@ -17,6 +17,7 @@ pipeline {
             steps {
               script {
                 workspace_179_12 = "$env.WORKSPACE/build"
+                echo $workspace_179_12
               }
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
