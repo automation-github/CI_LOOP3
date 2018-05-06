@@ -11,19 +11,22 @@ pipeline {
   stages {
     stage('CI_LOOP3_MASTER') {
       parallel {
-
-        timeout(time: 180, unit: 'MINUTES') {        
+       
           stage('CI_LOOP3_5.1_SOLID_179.12') {
             agent any
+            options {
+              timeout(time: 180, unit: 'MINUTES')
+            }
             steps {
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
           }
-        }
 
-        timeout(time: 180, unit: 'MINUTES') {
           stage('CI_LOOP3_5.1_Solid_182.143') {
             agent any
+            options {
+              timeout(time: 180, unit: 'MINUTES')
+            }
             steps {
               build (job: 'CI_LOOP3_5.1_Solid_182.143/master', propagate: false)
             }
@@ -31,7 +34,6 @@ pipeline {
 
         }
       }
-    }
 
     stage('copy xmls') {
       steps {
