@@ -1,4 +1,5 @@
 def workspace = pwd()
+echo workspace$
 
 pipeline {
   agent any
