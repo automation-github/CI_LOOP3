@@ -1,5 +1,3 @@
-def workspace_179_12 = null
-
 pipeline {
   agent any
   triggers {
@@ -15,11 +13,12 @@ pipeline {
               timeout(time: 180, unit: 'MINUTES')
             }
             steps {
-              script {
-                workspace_179_12 = "$WORKSPACE"
-                echo workspace_179_12
-              }
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
+            }
+            post {
+              always {
+                junit '*.xml'
+              }
             }
           }
         }
