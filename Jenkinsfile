@@ -33,8 +33,8 @@ pipeline {
 
     stage('copy xmls') {
       steps {
-        sh '''cp -p ../CI_LOOP3_5.1_SOLID_182.143/*.xml .
-cp -p ../CI_LOOP3_5.1_SOLID_179.12/*.xml .'''
+        sh '''cp -p ../CI_LOOP3_5.1_SOLID_182.143/branches/master/*.xml .
+cp -p ../CI_LOOP3_5.1_SOLID_179.12/branches/master/*.xml .'''
       }
     }
 
