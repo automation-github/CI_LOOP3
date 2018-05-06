@@ -1,3 +1,5 @@
+def workspace = pwd()
+
 pipeline {
   agent any
   triggers {
@@ -13,9 +15,6 @@ pipeline {
               timeout(time: 180, unit: 'MINUTES')
             }
             steps {
-              script {
-                def workspace = pwd()
-              }
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
           }
