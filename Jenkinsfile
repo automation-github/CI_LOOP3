@@ -10,6 +10,7 @@ pipeline {
        
           stage('CI_LOOP3_5.1_SOLID_179.12') {
             agent any
+            def workspace = pwd()
             options {
               timeout(time: 180, unit: 'MINUTES')
             }
@@ -22,8 +23,7 @@ pipeline {
 
     stage('copy xmls') {
       steps {
-        sh '''cp -p ../jobs/CI_LOOP3_5.1_SOLID_182.143/branches/master/*.xml .
-cp -p ../jobs/CI_LOOP3_5.1_SOLID_179.12/branches/master/*.xml .'''
+        sh '''cp -p ${workspace}/*.xml .'''
       }
     }
 
