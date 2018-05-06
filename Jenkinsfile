@@ -6,7 +6,6 @@ pipeline {
 
   stages {
     stage('CI_LOOP3_MASTER') {
-      parallel {
        
           stage('CI_LOOP3_5.1_SOLID_179.12') {
             agent any
@@ -20,8 +19,7 @@ pipeline {
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
           }
-        }
-      }
+    }
 
     stage('copy xmls') {
       steps {
