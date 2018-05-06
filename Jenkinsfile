@@ -21,7 +21,7 @@ pipeline {
 
     stage('copy xmls') {
       steps {
-        sh '''cp -p ${env.LOCAL_BUILD_PATH}/*.xml .'''
+        sh '''cp -p ${env.LOCAL_BUILD_PATH}/build/*.xml .'''
       }
     }
 
