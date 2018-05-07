@@ -14,6 +14,7 @@ pipeline {
             }
             steps {
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
+              sh "cp -p /var/lib/jenkins/workspace/CI_LOOP3_5.1_SOLID_179.12/*.xml ."
             }
           }
         }
