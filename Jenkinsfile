@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('CI_LOOP3_MASTER') {
       parallel {
-          stage('CI_LOOP3_5.1_SOLID_179.12') {
+          stage('CCI_LOOP3_MASTER') {
             agent any
             options {
               timeout(time: 180, unit: 'MINUTES')
