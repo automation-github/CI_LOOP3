@@ -1,5 +1,3 @@
-def workspace_179_12 = null
-
 pipeline {
   agent any
   triggers {
@@ -9,16 +7,12 @@ pipeline {
   stages {
     stage('CI_LOOP3_MASTER') {
       parallel {
-          stage('CCI_LOOP3_MASTER') {
+          stage('CI_LOOP3_5.1_SOLID_179.12') {
             agent any
             options {
               timeout(time: 180, unit: 'MINUTES')
             }
             steps {
-              script {
-                workspace_179_12 = "$WORKSPACE"
-                echo workspace_179_12
-              }
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
             }
           }
@@ -27,7 +21,7 @@ pipeline {
 
     stage('copy xmls') {
       steps {
-        sh "cp -p $workspace_179_12/*.xml ."
+        sh "cp -p /var/lib/jenkins/workspace/CI_LOOP3_5.1_SOLID_179.12/*.xml ."
       }
     }
 
