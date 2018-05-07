@@ -20,12 +20,6 @@ pipeline {
         }
       }
 
-    stage('copy xmls') {
-      steps {
-        sh "cp -p /var/lib/jenkins/workspace/CI_LOOP3_5.1_SOLID_179.12/*.xml ."
-      }
-    }
-
     stage('publish junit results') {
       steps {
         junit(testResults: '*.xml', healthScaleFactor: 1.0, allowEmptyResults: true)
