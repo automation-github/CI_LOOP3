@@ -22,6 +22,18 @@ pipeline {
               sh "cp -p /var/lib/jenkins/workspace/CI_LOOP3_5.1_SOLID_179.12/*.xml /var/lib/jenkins/workspace/CI_LOOP3_MASTER"
             }
           }
+
+          stage('CI_LOOP3_5.1_SOLID_182.143') {
+            agent any
+            options {
+              timeout(time: 180, unit: 'MINUTES')
+            }
+            steps {
+              build (job: 'CI_LOOP3_5.1_Solid_182.143/master', propagate: false)
+              sh "cp -p /var/lib/jenkins/workspace/CI_LOOP3_5.1_SOLID_182.143/*.xml /var/lib/jenkins/workspace/CI_LOOP3_MASTER"
+            }
+          }
+
         }
       }
 
