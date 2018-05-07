@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'master'
+      customWorkspace '/var/lib/jenkins/workspace/CI_LOOP3_MASTER'
+    }
+  }
   triggers {
     cron('H */4 * * 1-5')
   }
@@ -14,7 +19,7 @@ pipeline {
             }
             steps {
               build (job: 'CI_LOOP3_5.1_SOLID_179.12/master', propagate: false)
-              sh "cp -p /var/lib/jenkins/workspace/CI_LOOP3_5.1_SOLID_179.12/*.xml ."
+              sh "cp -p /var/lib/jenkins/workspace/CI_LOOP3_5.1_SOLID_179.12/*.xml /var/lib/jenkins/workspace/CI_LOOP3_MASTER"
             }
           }
         }
