@@ -70,17 +70,17 @@ def BuildJob(jobName) {
 node {
   ws('/var/lib/jenkins/workspace/CI_LOOP3_MASTER') {
       stage('CI_LOOP3_MASTER') {
-        // parallel (
-        //   'CI_LOOP3_5.1_SOLID_179.12':
-        //   {
-        //     BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')
-        //   },
-        //   'CI_LOOP3_5.1_SOLID_182.143':  
-        //   {
-        //     BuildJob('CI_LOOP3_5.1_SOLID_182.143/master')
-        //   }
-        // )
-        BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')
+        parallel (
+          'CI_LOOP3_5.1_SOLID_179.12':
+          {
+            BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')
+          },
+          'CI_LOOP3_5.1_SOLID_182.143':  
+          {
+            BuildJob('CI_LOOP3_5.1_SOLID_182.143/master')
+          }
+        )
+        // BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')
       }
 
       stage('publish junit results') {
