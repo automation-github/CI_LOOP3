@@ -50,7 +50,7 @@ def BuildJob(projectName) {
     timeout(time: 180, unit: 'MINUTES') {   
       try {
          stage(projectName) {
-           node {      
+           // node {      
              def res = build job:projectName, propagate: false
              sh '''cp -p /var/lib/jenkins/workspace/$projectName/*.xml /var/lib/jenkins/workspace/CI_LOOP3_MASTER'''
              result = res.result
@@ -59,7 +59,7 @@ def BuildJob(projectName) {
              } else {
                 error 'FAIL' // this fails the stage
              }
-           }
+           // }
          }
       } catch (e) {
           currentBuild.result = 'UNSTABLE'
@@ -78,9 +78,10 @@ node {
 
     // stages {
       // stage('CI_LOOP3_MASTER') {
-      parallel: {
-          BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')
-          BuildJob('CI_LOOP3_5.1_SOLID_182.143/master')
+      parallel '179.12': {
+          BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')},
+        {
+        '182.143':  BuildJob('CI_LOOP3_5.1_SOLID_182.143/master')
         }
       // }  
 
