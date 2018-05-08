@@ -47,28 +47,24 @@
 // }
 
 def BuildJob(projectName) {
-    try {
-       stage(projectName) {
-         properties (
-          [
-           timeout(time: 180, unit: 'MINUTES')
-          ]
-         )
+    timeout(time: 180, unit: 'MINUTES') {   
+      try {
+         stage(projectName) {
+           node {      
+             def res = build job:projectName, propagate: false
+             sh '''cp -p /var/lib/jenkins/workspace/$projectName/*.xml /var/lib/jenkins/workspace/CI_LOOP3_MASTER'''
+             result = res.result
 
-         node {      
-           def res = build job:projectName, propagate: false
-           sh '''cp -p /var/lib/jenkins/workspace/$projectName/*.xml /var/lib/jenkins/workspace/CI_LOOP3_MASTER'''
-           result = res.result
-
-           if (result.equals("SUCCESS")) {
-           } else {
-              error 'FAIL' // this fails the stage
+             if (result.equals("SUCCESS")) {
+             } else {
+                error 'FAIL' // this fails the stage
+             }
            }
          }
-       }
-    } catch (e) {
-        currentBuild.result = 'UNSTABLE'
-        result = "FAIL" // make sure other exceptions are recorded as failure too
+      } catch (e) {
+          currentBuild.result = 'UNSTABLE'
+          result = "FAIL" // make sure other exceptions are recorded as failure too
+      }
     }
 }
 
