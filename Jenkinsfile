@@ -49,7 +49,6 @@
 def BuildJob(projectName) {
     try {
        stage(projectName) {
-         agent any
          options {
            timeout(time: 180, unit: 'MINUTES')
          }
@@ -73,7 +72,7 @@ def BuildJob(projectName) {
 
 node {
   ws('/var/lib/jenkins/workspace/CI_LOOP3_MASTER') {
-    
+
   // agent { 
   //   label 'master'
   //   customWorkspace '/var/lib/jenkins/workspace/CI_LOOP3_MASTER'
