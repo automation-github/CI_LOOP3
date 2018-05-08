@@ -79,12 +79,12 @@ node {
   // }
 
     // stages {
-      stage('CI_LOOP3_MASTER') {
-        parallel {
-            BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')
-            BuildJob('CI_LOOP3_5.1_SOLID_182.143/master')
-          }
-      }  
+      // stage('CI_LOOP3_MASTER') {
+      parallel {
+          BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')
+          BuildJob('CI_LOOP3_5.1_SOLID_182.143/master')
+        }
+      // }  
 
       stage('publish junit results') {
         junit(testResults: '*.xml', healthScaleFactor: 1.0, allowEmptyResults: true)
