@@ -68,7 +68,7 @@ def BuildJob(jobName) {
 }
 
 node {
-  ws('/var/lib/jenkins/workspace/CI_LOOP3_MASTER') {
+  dir('/var/lib/jenkins/workspace/CI_LOOP3_MASTER') {
       stage('CI_LOOP3_MASTER') {
         parallel (
           'CI_LOOP3_5.1_SOLID_179.12':
