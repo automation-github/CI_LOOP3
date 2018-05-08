@@ -70,21 +70,13 @@ def BuildJob(projectName) {
 
 node {
   ws('/var/lib/jenkins/workspace/CI_LOOP3_MASTER') {
-
-  // agent { 
-  //   label 'master'
-  //   customWorkspace '/var/lib/jenkins/workspace/CI_LOOP3_MASTER'
-  // }
-
-    // stages {
-      // stage('CI_LOOP3_MASTER') {
       stage('tests') {
         parallel (
-          '179.12':
+          'CI_LOOP3_5.1_SOLID_179.12':
           {
             BuildJob('CI_LOOP3_5.1_SOLID_179.12/master')
           },
-          '182.143':  
+          'CI_LOOP3_5.1_SOLID_182.143':  
           {
             BuildJob('CI_LOOP3_5.1_SOLID_182.143/master')
           }
@@ -95,6 +87,4 @@ node {
         junit(testResults: '*.xml', healthScaleFactor: 1.0, allowEmptyResults: true)
       }
     }
-
-  // }
 }
