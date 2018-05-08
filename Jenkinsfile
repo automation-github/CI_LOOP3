@@ -49,9 +49,11 @@
 def BuildJob(projectName) {
     try {
        stage(projectName) {
-         options {
+         properties (
+          [
            timeout(time: 180, unit: 'MINUTES')
-         }
+          ]
+         )
 
          node {      
            def res = build job:projectName, propagate: false
