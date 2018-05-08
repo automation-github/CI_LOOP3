@@ -53,7 +53,7 @@ def BuildJob(projectName) {
            timeout(time: 180, unit: 'MINUTES')
          }
 
-         node {      
+         // node {      
            def res = build job:projectName, propagate: false
            sh '''cp -p /var/lib/jenkins/workspace/$projectName/*.xml /var/lib/jenkins/workspace/CI_LOOP3_MASTER'''
            result = res.result
@@ -62,7 +62,7 @@ def BuildJob(projectName) {
            } else {
               error 'FAIL' //sh "exit 1" // this fails the stage
            }
-         }
+         // }
        }
     } catch (e) {
         currentBuild.result = 'UNSTABLE'
